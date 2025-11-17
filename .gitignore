@@ -1,18 +1,16 @@
-# Python
+# Python artifacts
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.env
+
+# Virtual Environments
+env/
 venv/
-.env/
-.venv/
 
-# Node / frontend
-node_modules/
-dist/
-build/
+# Environment variables file
+.env
 
-# OS files
-.DS_Store
-Thumbs.db
+# IDE / Editor specific files
+.idea/
+.vscode/

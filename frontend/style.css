@@ -1,0 +1,119 @@
+/* General Body Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Main Container */
+.container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 30px;
+    color: #34495e;
+}
+
+/* Input and Button Styles */
+#city {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s;
+}
+
+#city:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Results and Forecast Styles */
+#result {
+    margin-top: 25px;
+}
+
+.forecast-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.forecast-item {
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    /* Flex properties for a responsive grid. Adjusted for 7 items. */
+    flex: 1 1 130px;
+    min-width: 130px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.forecast-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-item p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.forecast-item p:first-child {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Error Message */
+#result p[style*="color: red;"] {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Weather Icon Style */
+.weather-icon {
+    width: 50px;
+    height: 50px;
+}
