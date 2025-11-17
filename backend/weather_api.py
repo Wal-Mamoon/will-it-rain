@@ -10,15 +10,20 @@ API_KEY = os.getenv("OPENWEATHER_API_KEY")
 BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
 
 
-def get_weather(city):
+def get_weather(city=None, lat=None, lon=None):
     if not API_KEY:
         return {"error": "API key is not configured"}
 
     params = {
-        "q": city,
         "appid": API_KEY,
-        "units": "metric"
+        "units": "metric",
+        "cnt": 40  # 40 timestamps cover 5 days
     }
+    if city:
+        params["q"] = city
+    elif lat and lon:
+        params["lat"] = lat
+        params["lon"] = lon
 
     try:
         response = requests.get(BASE_URL, params=params)
@@ -30,10 +35,23 @@ def get_weather(city):
     if "list" not in weather_data or not weather_data["list"]:
         return {"error": "City not found or API issue"}
 
+    # Process hourly forecast for the next 24 hours (8 timestamps)
+    hourly_forecasts = []
+    for item in weather_data.get("list", [])[:8]:
+        hourly_forecasts.append({
+            # Use a cross-platform way to format the hour without zero-padding
+            "time": f"{int(datetime.fromtimestamp(item['dt']).strftime('%I'))} {datetime.fromtimestamp(item['dt']).strftime('%p')}",
+            "temp": item["main"]["temp"],
+            "icon": item["weather"][0]["icon"]
+        })
+
     # Process the 3-hour data to get a 5-day summary
     daily_forecasts = {}
     for forecast_item in weather_data.get("list", []):
-        day_date = forecast_item["dt_txt"].split(" ")[0]
+        dt_object = datetime.fromisoformat(
+            forecast_item["dt_txt"].split(" ")[0])
+        day_date = dt_object.strftime('%Y-%m-%d')
+
         if day_date not in daily_forecasts:
             daily_forecasts[day_date] = {
                 "day": datetime.fromisoformat(day_date).strftime('%A'),
@@ -67,5 +85,7 @@ def get_weather(city):
 
     return {
         "city": weather_data["city"]["name"],
-        "forecasts": final_forecasts
+        "hourly": hourly_forecasts,
+        # Return up to 6 days, including today
+        "forecasts": final_forecasts[:6]
     }

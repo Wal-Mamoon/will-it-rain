@@ -20,11 +20,16 @@ app.wsgi_app = WhiteNoise(
 @app.route("/forecast", methods=["GET"])
 def forecast():
     city = request.args.get("city")
-    if not city:
-        return jsonify({"error": "City parameter is required"}), 400
+    lat = request.args.get("lat")
+    lon = request.args.get("lon")
 
-    forecast = get_weather(city)
-    return jsonify(forecast)
+    if city:
+        weather_data = get_weather(city=city)
+    elif lat and lon:
+        weather_data = get_weather(lat=lat, lon=lon)
+    else:
+        return jsonify({"error": "City or coordinates are required"}), 400
+    return jsonify(weather_data)
 
 
 if __name__ == "__main__":
