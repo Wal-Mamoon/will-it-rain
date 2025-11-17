@@ -7,17 +7,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <div class="container">
         <h1>☔ Weather App</h1>
         <input id="city" type="text" placeholder="Enter your city...">
-        <button onclick="getForecast()">Check Forecast</button>
+        <div class="button-group">
+            <button id="forecast-button" onclick="getForecastByCity()">Check Forecast</button>
+            <button id="location-button" onclick="getForecastByLocation()">Use My Location</button>
+        </div>
 
+        <div id="loader" class="loader" style="display: none;"></div>
         <div id="result"></div>
     </div>
     <script src="script.js"></script>
+
+    <footer>
+        <p>Created by Walid Mamoon</p>
+        <div class="social-links">
+            <a href="https://github.com/Wal-Mamoon" target="_blank" aria-label="GitHub Profile"><i
+                    class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/wal-koang-2000wmw/" target="_blank" aria-label="LinkedIn Profile"><i
+                    class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/wal20mamoon/" target="_blank" aria-label="Instagram Profile"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="https://web.facebook.com/walmamoonwal.mamoon/" target="_blank" aria-label="Facebook Profile"><i
+                    class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/254790215069" target="_blank" aria-label="WhatsApp Profile"><i
+                    class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
 </body>
 
 </html>

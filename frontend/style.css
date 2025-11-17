@@ -4,8 +4,9 @@ body {
     background-color: #f0f4f8;
     color: #333;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     min-height: 100vh;
     margin: 0;
     padding: 20px;
@@ -62,13 +63,75 @@ button {
     transition: background-color 0.3s;
 }
 
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+#location-button {
+    background-color: #27ae60;
+}
+
+#location-button:hover {
+    background-color: #229954;
+}
+
 button:hover {
     background-color: #2980b9;
+}
+
+button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
 }
 
 /* Results and Forecast Styles */
 #result {
     margin-top: 25px;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hourly-forecast-container {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    margin-top: 20px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.hourly-item {
+    background-color: #fdfdfd;
+    border: 1px solid #ecf0f1;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+    min-width: 80px;
+    text-align: center;
+}
+
+.hourly-item p {
+    margin: 4px 0;
+    font-size: 13px;
 }
 
 .forecast-container {
@@ -116,4 +179,30 @@ button:hover {
 .weather-icon {
     width: 50px;
     height: 50px;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #bdc3c7;
+    width: 100%;
+    max-width: 800px;
+}
+
+.social-links a {
+    margin: 0 15px;
+    color: #34495e;
+    /* A slightly darker, more professional color */
+    font-size: 24px;
+    /* Makes the icons larger */
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+    color: #3498db;
+    /* Brightens to the theme color on hover */
+    transform: scale(1.2);
+    /* Adds a slight zoom effect */
 }
